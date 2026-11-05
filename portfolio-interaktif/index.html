@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f1e6" />
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f1e6" />
+    <meta name="description" content="Portofolio personal dengan bentuk buku interaktif." />
+    <title>My little book — portofolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Silkscreen:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="shell">
+      <section class="cover-screen" id="coverScreen" aria-labelledby="welcomeTitle">
+        <div class="cover-decoration decoration-left" aria-hidden="true"><span>✳</span><i></i><b></b></div>
+        <div class="cover-decoration decoration-right" aria-hidden="true"><span>✧</span><i></i><b></b></div>
+        <div class="cover-card">
+          <div class="cover-topline">
+            <span>CATATAN PERSONAL</span>
+            <span>VOL. 01&nbsp; · &nbsp;2026</span>
+          </div>
+          <div class="portrait-orbit">
+            <span class="orbit orbit-a" aria-hidden="true"></span>
+            <span class="orbit orbit-b" aria-hidden="true"></span>
+            <span class="portrait-flower" aria-hidden="true">✿</span>
+            <span class="portrait-spark portrait-spark-left" aria-hidden="true">✦</span>
+            <span class="portrait-spark portrait-spark-right" aria-hidden="true">✧</span>
+            <div class="portrait">
+              <img id="profileImage" alt="Foto profil" hidden />
+              <span id="profilePlaceholder" aria-hidden="true">♡</span>
+            </div>
+            <label class="photo-button" for="photoInput" title="Pilih foto profil" hidden>＋</label>
+            <input id="photoInput" type="file" accept="image/*" hidden disabled />
+          </div>
+          <p class="cover-overline"><span aria-hidden="true">✦</span> HALO, SENANG KAMU DI SINI <span aria-hidden="true">✦</span></p>
+          <h1 id="welcomeTitle">WELCOME TO<br /><em>MY PORTOFOLIO</em></h1>
+          <label class="name-editor" for="nameInput" hidden>
+            <span><span aria-hidden="true">✎</span> TULIS NAMAMU</span>
+            <input id="nameInput" type="text" maxlength="48" autocomplete="name" placeholder="Contoh: Alya Putri" />
+          </label>
+          <p class="cover-name" data-editable="name">Nama Kamu</p>
+          <p class="cover-caption">sekumpulan cerita, mimpi, dan hal-hal yang kusukai</p>
+          <button class="open-book" id="openBook" type="button">Buka bukuku <span aria-hidden="true">↗</span></button>
+          <span class="cover-foot">dibuat dengan sepenuh hati <span aria-hidden="true">♡</span></span>
+        </div>
+        <span class="cover-side-note" aria-hidden="true">A LITTLE BOOK ABOUT ME</span>
+      </section>
+
+      <section class="portfolio" id="portfolio" hidden>
+        <header class="toolbar">
+          <button class="brand" id="backToCover" type="button" aria-label="Kembali ke sampul">
+            <span class="brand-icon" aria-hidden="true">✿</span> my little book
+          </button>
+          <div class="toolbar-actions">
+            <span class="edit-hint">RUANG KERJA · KHUSUS OPERATOR</span>
+            <button class="edit-toggle" id="editToggle" type="button" aria-haspopup="dialog" aria-pressed="false">
+              <span aria-hidden="true">✎</span> <span id="editLabel">Operator</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="book" id="book">
+          <div class="book-ornament" aria-hidden="true">
+            <span>HERBARIUM · VOL. 01</span>
+            <span>✳</span>
+            <span>CATATAN PERJALANAN</span>
+          </div>
+          <aside class="toc" aria-label="Daftar isi">
+            <div class="toc-heading"><span>DAFTAR ISI</span><span aria-hidden="true">✳</span></div>
+            <nav class="toc-links" aria-label="Halaman buku">
+              <button class="toc-link active" type="button" data-page="about"><span>01</span> Tentang aku</button>
+              <button class="toc-link" type="button" data-page="education"><span>02</span> Pendidikan</button>
+              <button class="toc-link" type="button" data-page="skills"><span>03</span> Skill</button>
+              <button class="toc-link" type="button" data-page="works"><span>04</span> Karya pilihan</button>
+              <button class="toc-link" type="button" data-page="contact"><span>05</span> Kontak</button>
+              <a class="toc-link instagram" id="instagramLink" href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><span>↗</span> Instagram</a>
+            </nav>
+            <div class="toc-footer"><span></span> cerita yang terus tumbuh</div>
+          </aside>
+
+          <section class="page-stack" aria-label="Isi buku portofolio" aria-live="polite">
+            <div class="page">
+              <div class="page-top"><span>MY LITTLE BOOK OF ME</span><span id="pageNumber">01 / 05</span></div>
+              <article class="page-content" data-content="about" aria-labelledby="aboutTitle">
+                <p class="eyebrow"><span></span> HALO, SENANG KENAL</p>
+                <h2 id="aboutTitle">Hai, aku<br /><em data-editable="name">Nama Kamu.</em></h2>
+                <div class="about-profile">
+                  <div class="about-portrait">
+                    <img id="aboutProfileImage" alt="Foto profil pada halaman data diri" hidden />
+                    <span id="aboutProfilePlaceholder" aria-hidden="true">♡</span>
+                  </div>
+                  <div class="about-profile-copy">
+                    <span>THIS IS ME</span>
+                    <p data-editable="name">Nama Kamu</p>
+                    <label class="about-photo-button" for="photoInput" hidden>✎ Ganti foto</label>
+                  </div>
+                </div>
+                <p class="intro" data-editable="about">Aku suka belajar hal baru, merangkai ide, dan membuat sesuatu yang bermakna. Di sini aku berbagi sedikit cerita tentang diriku dan perjalanan yang sedang kutempuh.</p>
+                <div class="location-note"><span class="note-flower" aria-hidden="true">✿</span><div><small>AKU TINGGAL DI</small><p data-editable="location">Kota tempat tinggalmu</p></div></div>
+                <span class="page-doodle" aria-hidden="true">✧</span>
+              </article>
+
+              <article class="page-content" data-content="education" aria-labelledby="educationTitle" hidden>
+                <p class="eyebrow"><span></span> JEJAK BELAJAR</p>
+                <h2 id="educationTitle">Perjalanan<br /><em>pendidikan.</em></h2>
+                <div class="timeline">
+                  <div class="timeline-item"><small data-editable="education-year-1">2022 — SEKARANG</small><h3 data-editable="education-name-1">Nama universitas / sekolah</h3><p data-editable="education-info-1">Program studi atau jurusan · Kota</p></div>
+                  <div class="timeline-item"><small data-editable="education-year-2">2019 — 2022</small><h3 data-editable="education-name-2">Nama sekolah sebelumnya</h3><p data-editable="education-info-2">Jurusan atau fokus belajar · Kota</p></div>
+                </div>
+                <p class="hand-note">setiap langkah adalah bagian dari cerita ✿</p>
+              </article>
+
+              <article class="page-content" data-content="skills" aria-labelledby="skillsTitle" hidden>
+                <p class="eyebrow"><span></span> CARA AKU BERKARYA</p>
+                <h2 id="skillsTitle">Skill yang<br /><em>terus bertumbuh.</em></h2>
+                <p class="intro" data-editable="skills-intro">Perpaduan cara bekerja bersama dan kemampuan yang terus aku asah.</p>
+                <div class="skill-groups">
+                  <section class="skill-group" aria-labelledby="softSkillsTitle">
+                    <h3 id="softSkillsTitle"><span>01</span> SOFT SKILL</h3>
+                    <div class="skill-list">
+                      <div><span>✳</span><p data-editable="soft-skill-1">Komunikasi yang baik</p></div>
+                      <div><span>✳</span><p data-editable="soft-skill-2">Kerja sama tim</p></div>
+                      <div><span>✳</span><p data-editable="soft-skill-3">Manajemen waktu</p></div>
+                    </div>
+                  </section>
+                  <section class="skill-group hard-skill-group" aria-labelledby="hardSkillsTitle">
+                    <h3 id="hardSkillsTitle"><span>02</span> HARD SKILL</h3>
+                    <div class="skill-list">
+                      <div><span>✦</span><p data-editable="hard-skill-1">Desain grafis</p></div>
+                      <div><span>✦</span><p data-editable="hard-skill-2">Microsoft Office</p></div>
+                      <div><span>✦</span><p data-editable="hard-skill-3">Skill teknis lainnya</p></div>
+                    </div>
+                  </section>
+                </div>
+              </article>
+
+              <article class="page-content" data-content="works" aria-labelledby="worksTitle" hidden>
+                <p class="eyebrow"><span></span> DIBUAT DENGAN HATI</p>
+                <h2 id="worksTitle">Karya<br /><em>pilihanku.</em></h2>
+                <div class="work-list">
+                  <div class="work-card"><span class="work-number">01 / PROJECT</span><span class="work-flower" aria-hidden="true">✿</span><h3 data-editable="work-title-1">Karya pertama</h3><p data-editable="work-description-1">Deskripsi singkat tentang karya ini.</p><a data-work-link="1" href="https://example.com" target="_blank" rel="noopener noreferrer">lihat karya ↗</a><input data-work-url="1" type="url" placeholder="https://tautan-karya.com" aria-label="Tautan karya pertama" hidden /></div>
+                  <div class="work-card work-pink"><span class="work-number">02 / PROJECT</span><span class="work-flower" aria-hidden="true">✳</span><h3 data-editable="work-title-2">Karya berikutnya</h3><p data-editable="work-description-2">Cerita pendek tentang proyek pilihanmu.</p><a data-work-link="2" href="https://example.com" target="_blank" rel="noopener noreferrer">lihat karya ↗</a><input data-work-url="2" type="url" placeholder="https://tautan-karya.com" aria-label="Tautan karya kedua" hidden /></div>
+                </div>
+                <p class="hand-note">ruang untuk ide yang terus tumbuh ✧</p>
+              </article>
+
+              <article class="page-content" data-content="contact" aria-labelledby="contactTitle" hidden>
+                <p class="eyebrow"><span></span> SURAT SELALU DITERIMA</p>
+                <h2 id="contactTitle">Mari saling<br /><em>menyapa.</em></h2>
+                <p class="intro" data-editable="contact-intro">Ada ide, pertanyaan, atau sekadar ingin ngobrol? Inbox-ku selalu terbuka.</p>
+                <div class="contact-list">
+                  <div><span aria-hidden="true">✉</span><section><small>EMAIL</small><a id="emailLink" data-editable="email" href="mailto:namakamu@email.com">namakamu@email.com</a></section></div>
+                  <div><span aria-hidden="true">☏</span><section><small>TELEPON</small><a id="phoneLink" data-editable="phone" href="tel:+6281200000000">+62 812 0000 0000</a></section></div>
+                  <div><span aria-hidden="true">⌖</span><section><small>LOKASI</small><p data-editable="contact-location">Kota, Indonesia</p></section></div>
+                </div>
+                <label class="instagram-label">INSTAGRAM <input id="instagramInput" type="url" placeholder="https://instagram.com/username" hidden /></label>
+                <p class="instagram-handle" data-editable="instagram-handle">@usernamekamu</p>
+              </article>
+              <footer class="page-footer">
+                <button class="turn-page" id="previousPage" type="button" aria-label="Halaman sebelumnya" disabled>←</button>
+                <span>made with <b aria-hidden="true">♡</b> & daydreams</span>
+                <button class="turn-page" id="nextPage" type="button" aria-label="Halaman berikutnya">→</button>
+              </footer>
+            </div>
+          </section>
+        </div>
+
+        <section class="music" aria-labelledby="musicTitle">
+          <div class="music-heading"><div><small>PLAYER SPOTIFY · DI LUAR DAFTAR ISI</small><h2 id="musicTitle">pilih lagu, <em>lalu tekan play.</em> ♫</h2></div><span>MY LITTLE PLAYLIST · 04 TRACKS</span></div>
+          <div class="music-card">
+            <div class="tracks" aria-label="Pilih lagu">
+              <div class="track-row"><button class="track selected" type="button" aria-label="Putar lagu pilihan 1 di player" aria-pressed="true" data-track="5V02ItrZKBi8aGjKrKJpFa"><span>▶</span><span data-editable="track-title-1">Lagu pilihan 01</span><small>01</small></button><a class="track-external" href="https://open.spotify.com/track/5V02ItrZKBi8aGjKrKJpFa" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 1 di Spotify">↗</a></div>
+              <div class="track-row"><button class="track" type="button" aria-label="Putar lagu pilihan 2 di player" aria-pressed="false" data-track="5XeFesFbtLpXzIVDNQP22n"><span>▶</span><span data-editable="track-title-2">Lagu pilihan 02</span><small>02</small></button><a class="track-external" href="https://open.spotify.com/track/5XeFesFbtLpXzIVDNQP22n" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 2 di Spotify">↗</a></div>
+              <div class="track-row"><button class="track" type="button" aria-label="Putar lagu pilihan 3 di player" aria-pressed="false" data-track="6X3lP5zhKGyJn6yWDvMUvo"><span>▶</span><span data-editable="track-title-3">Lagu pilihan 03</span><small>03</small></button><a class="track-external" href="https://open.spotify.com/track/6X3lP5zhKGyJn6yWDvMUvo" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 3 di Spotify">↗</a></div>
+              <div class="track-row"><button class="track" type="button" aria-label="Putar lagu pilihan 4 di player" aria-pressed="false" data-track="1RFc6GvKrakOcP8qdtmA7q"><span>▶</span><span data-editable="track-title-4">Lagu pilihan 04</span><small>04</small></button><a class="track-external" href="https://open.spotify.com/track/1RFc6GvKrakOcP8qdtmA7q" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 4 di Spotify">↗</a></div>
+            </div>
+            <iframe id="spotifyPlayer" title="Pemutar Spotify: Lagu pilihan 01" src="https://open.spotify.com/embed/track/5V02ItrZKBi8aGjKrKJpFa?utm_source=generator" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+          <p class="music-footnote">Pilih lagu untuk memuatnya di player, lalu tekan ▶ pada player Spotify untuk memutar. Jika embed tidak tersedia di browser atau wilayahmu, tekan ↗ untuk membukanya di Spotify.</p>
+        </section>
+        <footer class="site-footer"><span>HALAMAN KECIL DARI <span data-editable="name">NAMA KAMU</span></span><span>TERIMA KASIH SUDAH MAMPIR ♡</span></footer>
+
+        <div class="pixel-pal" id="pixelPal">
+          <div class="speech" id="speech" aria-live="polite">Hai! Klik aku ya ✿</div>
+          <button class="pixel-button" id="pixelButton" type="button" aria-label="Ajak ngobrol teman pixel">
+            <svg viewBox="0 0 64 88" aria-label="Teman pixel berkerudung ivory, mini dress pink, dan rok putih tulang" role="img" shape-rendering="crispEdges">
+              <rect x="24" y="2" width="16" height="4" fill="#7e8270"/><rect x="18" y="6" width="28" height="4" fill="#f3ead7"/><rect x="14" y="10" width="36" height="8" fill="#f3ead7"/><rect x="10" y="18" width="44" height="8" fill="#f3ead7"/><rect x="8" y="26" width="48" height="20" fill="#f3ead7"/><rect x="14" y="30" width="36" height="14" fill="#dfb49e"/><rect x="12" y="34" width="8" height="14" fill="#f3ead7"/><rect x="44" y="34" width="8" height="14" fill="#f3ead7"/><rect x="22" y="34" width="4" height="4" fill="#514f42"/><rect x="38" y="34" width="4" height="4" fill="#514f42"/><rect x="28" y="40" width="8" height="3" fill="#a96568"/><rect x="20" y="46" width="24" height="8" fill="#e6a5a5"/><rect x="16" y="54" width="32" height="8" fill="#e6a5a5"/><rect x="20" y="62" width="24" height="8" fill="#f2eadc"/><rect x="18" y="70" width="28" height="6" fill="#f2eadc"/><rect x="18" y="76" width="10" height="6" fill="#dfb49e"/><rect x="36" y="76" width="10" height="6" fill="#dfb49e"/><rect x="14" y="82" width="14" height="4" fill="#8f9f83"/><rect x="36" y="82" width="14" height="4" fill="#8f9f83"/><rect x="6" y="32" width="4" height="14" fill="#f3ead7"/><rect x="54" y="32" width="4" height="14" fill="#f3ead7"/><rect x="4" y="44" width="8" height="6" fill="#dfb49e"/><rect x="52" y="44" width="8" height="6" fill="#dfb49e"/>
+            </svg>
+          </button>
+          <span>little pixel friend</span>
+        </div>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+    <dialog class="operator-dialog" id="operatorDialog" aria-labelledby="operatorTitle">
+      <form id="operatorForm">
+        <p class="dialog-kicker">AREA TERBATAS · OPERATOR</p>
+        <h2 id="operatorTitle">Halo kembali.</h2>
+        <p class="dialog-description">Masukkan PIN operator untuk mengubah nama, foto, isi halaman, dan tautan portofolio.</p>
+        <label class="pin-label" for="operatorPin">PIN OPERATOR</label>
+        <input id="operatorPin" type="password" inputmode="text" autocomplete="current-password" required aria-describedby="pinMessage" />
+        <p class="pin-message" id="pinMessage" aria-live="polite"></p>
+        <div class="dialog-actions">
+          <button class="dialog-cancel" id="cancelOperator" type="button">Kembali</button>
+          <button class="dialog-submit" type="submit">Masuk editor <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="dialog-security">PIN demo awal ada di <code>script.js</code> — ganti sebelum situs dipublikasikan. Situs statis tidak dapat mengunci kode dari pengunjung; perlindungan sungguhan memerlukan autentikasi server.</p>
+      </form>
+    </dialog>
+    <script src="script.js"></script>
+  </body>
+</html>
+    <meta name="description" content="Portofolio personal dengan bentuk buku interaktif." />
+    <title>My little book — portofolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Silkscreen:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="shell">
+      <section class="cover-screen" id="coverScreen" aria-labelledby="welcomeTitle">
+        <div class="cover-decoration decoration-left" aria-hidden="true"><span>✳</span><i></i><b></b></div>
+        <div class="cover-decoration decoration-right" aria-hidden="true"><span>✧</span><i></i><b></b></div>
+        <button class="edit-toggle cover-operator" type="button" data-operator-toggle aria-haspopup="dialog" aria-pressed="false">
+          <span aria-hidden="true">✎</span> <span class="edit-label">Operator</span>
+        </button>
+        <div class="cover-card">
+          <div class="cover-topline">
+            <span data-editable="cover-topline-left">CATATAN PERSONAL</span>
+            <span data-editable="cover-topline-right">VOL. 01  ·  2026</span>
+          </div>
+          <div class="portrait-orbit">
+            <span class="orbit orbit-a" aria-hidden="true"></span>
+            <span class="orbit orbit-b" aria-hidden="true"></span>
+            <span class="portrait-flower" aria-hidden="true">✿</span>
+            <span class="portrait-spark portrait-spark-left" aria-hidden="true">✦</span>
+            <span class="portrait-spark portrait-spark-right" aria-hidden="true">✧</span>
+            <div class="portrait">
+              <img id="profileImage" alt="Foto profil" hidden />
+              <span id="profilePlaceholder" aria-hidden="true">♡</span>
+            </div>
+            <label class="photo-button" for="photoInput" title="Pilih foto profil" hidden>＋</label>
+            <input id="photoInput" type="file" accept="image/*" hidden disabled />
+          </div>
+          <p class="cover-overline"><span aria-hidden="true">✦</span> <b data-editable="cover-overline">HALO, SENANG KAMU DI SINI</b> <span aria-hidden="true">✦</span></p>
+          <h1 id="welcomeTitle"><span data-editable="cover-title-1">WELCOME TO</span><br /><em data-editable="cover-title-2">MY PORTOFOLIO</em></h1>
+          <label class="name-editor" for="nameInput" hidden>
+            <span><span aria-hidden="true">✎</span> TULIS NAMAMU</span>
+            <input id="nameInput" type="text" maxlength="48" autocomplete="name" placeholder="Contoh: Alya Putri" />
+          </label>
+          <p class="cover-name" data-editable="name">Nama Kamu</p>
+          <p class="cover-caption" data-editable="cover-caption">sekumpulan cerita, mimpi, dan hal-hal yang kusukai</p>
+          <button class="open-book" id="openBook" type="button">Buka bukuku <span aria-hidden="true">↗</span></button>
+          <span class="cover-foot"><span class="cover-foot-text" data-editable="cover-foot">dibuat dengan sepenuh hati</span> <span aria-hidden="true">♡</span></span>
+        </div>
+        <span class="cover-side-note" aria-hidden="true" data-editable="cover-side-note">A LITTLE BOOK ABOUT ME</span>
+      </section>
+
+      <section class="portfolio" id="portfolio" hidden>
+        <header class="toolbar">
+          <button class="brand" type="button" data-go-home aria-label="Kembali ke halaman utama">
+            <span class="brand-icon" aria-hidden="true">✿</span> my little book
+          </button>
+          <div class="toolbar-actions">
+            <span class="edit-hint">RUANG KERJA · KHUSUS OPERATOR</span>
+            <button class="home-button" type="button" data-go-home aria-label="Kembali ke halaman utama">
+              <span aria-hidden="true">⌂</span> <span class="home-label">Halaman utama</span>
+            </button>
+            <button class="edit-toggle" type="button" data-operator-toggle aria-haspopup="dialog" aria-pressed="false">
+              <span aria-hidden="true">✎</span> <span class="edit-label">Operator</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="book" id="book">
+          <div class="book-ornament" aria-hidden="true">
+            <span>HERBARIUM · VOL. 01</span>
+            <span>✳</span>
+            <span>CATATAN PERJALANAN</span>
+          </div>
+          <aside class="toc" aria-label="Daftar isi">
+            <div class="toc-heading"><span>DAFTAR ISI</span><span aria-hidden="true">✳</span></div>
+            <nav class="toc-links" aria-label="Halaman buku">
+              <button class="toc-link active" type="button" data-page="about"><span>01</span> Tentang aku</button>
+              <button class="toc-link" type="button" data-page="education"><span>02</span> Pendidikan</button>
+              <button class="toc-link" type="button" data-page="skills"><span>03</span> Skill</button>
+              <button class="toc-link" type="button" data-page="works"><span>04</span> Karya pilihan</button>
+              <button class="toc-link" type="button" data-page="contact"><span>05</span> Kontak</button>
+              <a class="toc-link instagram" id="instagramLink" href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><span>↗</span> Instagram</a>
+            </nav>
+            <div class="toc-footer"><span></span> cerita yang terus tumbuh</div>
+          </aside>
+
+          <section class="page-stack" aria-label="Isi buku portofolio" aria-live="polite">
+            <div class="page">
+              <div class="page-top"><span>MY LITTLE BOOK OF ME</span><span id="pageNumber">01 / 05</span></div>
+              <article class="page-content" data-content="about" aria-labelledby="aboutTitle">
+                <p class="eyebrow"><span></span> HALO, SENANG KENAL</p>
+                <h2 id="aboutTitle">Hai, aku<br /><em data-editable="name">Nama Kamu.</em></h2>
+                <div class="about-profile">
+                  <div class="about-portrait">
+                    <img id="aboutProfileImage" alt="Foto profil pada halaman data diri" hidden />
+                    <span id="aboutProfilePlaceholder" aria-hidden="true">♡</span>
+                  </div>
+                  <div class="about-profile-copy">
+                    <span>THIS IS ME</span>
+                    <p data-editable="name">Nama Kamu</p>
+                    <label class="about-photo-button" for="photoInput" hidden>✎ Ganti foto</label>
+                  </div>
+                </div>
+                <p class="intro" data-editable="about">Aku suka belajar hal baru, merangkai ide, dan membuat sesuatu yang bermakna. Di sini aku berbagi sedikit cerita tentang diriku dan perjalanan yang sedang kutempuh.</p>
+                <div class="location-note"><span class="note-flower" aria-hidden="true">✿</span><div><small>AKU TINGGAL DI</small><p data-editable="location">Kota tempat tinggalmu</p></div></div>
+                <span class="page-doodle" aria-hidden="true">✧</span>
+              </article>
+
+              <article class="page-content" data-content="education" aria-labelledby="educationTitle" hidden>
+                <p class="eyebrow"><span></span> JEJAK BELAJAR</p>
+                <h2 id="educationTitle">Perjalanan<br /><em>pendidikan.</em></h2>
+                <div class="timeline">
+                  <div class="timeline-item"><small data-editable="education-year-1">2022 — SEKARANG</small><h3 data-editable="education-name-1">Nama universitas / sekolah</h3><p data-editable="education-info-1">Program studi atau jurusan · Kota</p></div>
+                  <div class="timeline-item"><small data-editable="education-year-2">2019 — 2022</small><h3 data-editable="education-name-2">Nama sekolah sebelumnya</h3><p data-editable="education-info-2">Jurusan atau fokus belajar · Kota</p></div>
+                </div>
+                <p class="hand-note">setiap langkah adalah bagian dari cerita ✿</p>
+              </article>
+
+              <article class="page-content" data-content="skills" aria-labelledby="skillsTitle" hidden>
+                <p class="eyebrow"><span></span> CARA AKU BERKARYA</p>
+                <h2 id="skillsTitle">Skill yang<br /><em>terus bertumbuh.</em></h2>
+                <p class="intro" data-editable="skills-intro">Perpaduan cara bekerja bersama dan kemampuan yang terus aku asah.</p>
+                <div class="skill-groups">
+                  <section class="skill-group" aria-labelledby="softSkillsTitle">
+                    <h3 id="softSkillsTitle"><span>01</span> SOFT SKILL</h3>
+                    <div class="skill-list">
+                      <div><span>✳</span><p data-editable="soft-skill-1">Komunikasi yang baik</p></div>
+                      <div><span>✳</span><p data-editable="soft-skill-2">Kerja sama tim</p></div>
+                      <div><span>✳</span><p data-editable="soft-skill-3">Manajemen waktu</p></div>
+                    </div>
+                  </section>
+                  <section class="skill-group hard-skill-group" aria-labelledby="hardSkillsTitle">
+                    <h3 id="hardSkillsTitle"><span>02</span> HARD SKILL</h3>
+                    <div class="skill-list">
+                      <div><span>✦</span><p data-editable="hard-skill-1">Desain grafis</p></div>
+                      <div><span>✦</span><p data-editable="hard-skill-2">Microsoft Office</p></div>
+                      <div><span>✦</span><p data-editable="hard-skill-3">Skill teknis lainnya</p></div>
+                    </div>
+                  </section>
+                </div>
+              </article>
+
+              <article class="page-content" data-content="works" aria-labelledby="worksTitle" hidden>
+                <p class="eyebrow"><span></span> DIBUAT DENGAN HATI</p>
+                <h2 id="worksTitle">Karya<br /><em>pilihanku.</em></h2>
+                <div class="work-list">
+                  <div class="work-card"><span class="work-number">01 / PROJECT</span><span class="work-flower" aria-hidden="true">✿</span><h3 data-editable="work-title-1">Karya pertama</h3><p data-editable="work-description-1">Deskripsi singkat tentang karya ini.</p><a data-work-link="1" href="https://example.com" target="_blank" rel="noopener noreferrer">lihat karya ↗</a><input data-work-url="1" type="url" placeholder="https://tautan-karya.com" aria-label="Tautan karya pertama" hidden /></div>
+                  <div class="work-card work-pink"><span class="work-number">02 / PROJECT</span><span class="work-flower" aria-hidden="true">✳</span><h3 data-editable="work-title-2">Karya berikutnya</h3><p data-editable="work-description-2">Cerita pendek tentang proyek pilihanmu.</p><a data-work-link="2" href="https://example.com" target="_blank" rel="noopener noreferrer">lihat karya ↗</a><input data-work-url="2" type="url" placeholder="https://tautan-karya.com" aria-label="Tautan karya kedua" hidden /></div>
+                </div>
+                <p class="hand-note">ruang untuk ide yang terus tumbuh ✧</p>
+              </article>
+
+              <article class="page-content" data-content="contact" aria-labelledby="contactTitle" hidden>
+                <p class="eyebrow"><span></span> SURAT SELALU DITERIMA</p>
+                <h2 id="contactTitle">Mari saling<br /><em>menyapa.</em></h2>
+                <p class="intro" data-editable="contact-intro">Ada ide, pertanyaan, atau sekadar ingin ngobrol? Inbox-ku selalu terbuka.</p>
+                <div class="contact-list">
+                  <div><span aria-hidden="true">✉</span><section><small>EMAIL</small><a id="emailLink" data-editable="email" href="mailto:namakamu@email.com">namakamu@email.com</a></section></div>
+                  <div><span aria-hidden="true">☏</span><section><small>TELEPON</small><a id="phoneLink" data-editable="phone" href="tel:+6281200000000">+62 812 0000 0000</a></section></div>
+                  <div><span aria-hidden="true">⌖</span><section><small>LOKASI</small><p data-editable="contact-location">Kota, Indonesia</p></section></div>
+                </div>
+                <label class="instagram-label">INSTAGRAM <input id="instagramInput" type="url" placeholder="https://instagram.com/username" hidden /></label>
+                <p class="instagram-handle" data-editable="instagram-handle">@usernamekamu</p>
+              </article>
+              <footer class="page-footer">
+                <button class="turn-page" id="previousPage" type="button" aria-label="Halaman sebelumnya" disabled>←</button>
+                <span>made with <b aria-hidden="true">♡</b> & daydreams</span>
+                <button class="turn-page" id="nextPage" type="button" aria-label="Halaman berikutnya">→</button>
+              </footer>
+            </div>
+          </section>
+        </div>
+
+        <section class="music" aria-labelledby="musicTitle">
+          <div class="music-heading"><div><small>PLAYER SPOTIFY · DI LUAR DAFTAR ISI</small><h2 id="musicTitle">pilih lagu, <em>lalu tekan play.</em> ♫</h2></div><span>MY LITTLE PLAYLIST · 04 TRACKS</span></div>
+          <div class="music-card">
+            <div class="tracks" aria-label="Pilih lagu">
+              <div class="track-row"><button class="track selected" type="button" aria-label="Putar lagu pilihan 1 di player" aria-pressed="true" data-track="5V02ItrZKBi8aGjKrKJpFa"><span>▶</span><span data-editable="track-title-1">Lagu pilihan 01</span><small>01</small></button><a class="track-external" href="https://open.spotify.com/track/5V02ItrZKBi8aGjKrKJpFa" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 1 di Spotify">↗</a></div>
+              <div class="track-row"><button class="track" type="button" aria-label="Putar lagu pilihan 2 di player" aria-pressed="false" data-track="5XeFesFbtLpXzIVDNQP22n"><span>▶</span><span data-editable="track-title-2">Lagu pilihan 02</span><small>02</small></button><a class="track-external" href="https://open.spotify.com/track/5XeFesFbtLpXzIVDNQP22n" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 2 di Spotify">↗</a></div>
+              <div class="track-row"><button class="track" type="button" aria-label="Putar lagu pilihan 3 di player" aria-pressed="false" data-track="6X3lP5zhKGyJn6yWDvMUvo"><span>▶</span><span data-editable="track-title-3">Lagu pilihan 03</span><small>03</small></button><a class="track-external" href="https://open.spotify.com/track/6X3lP5zhKGyJn6yWDvMUvo" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 3 di Spotify">↗</a></div>
+              <div class="track-row"><button class="track" type="button" aria-label="Putar lagu pilihan 4 di player" aria-pressed="false" data-track="1RFc6GvKrakOcP8qdtmA7q"><span>▶</span><span data-editable="track-title-4">Lagu pilihan 04</span><small>04</small></button><a class="track-external" href="https://open.spotify.com/track/1RFc6GvKrakOcP8qdtmA7q" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 4 di Spotify">↗</a></div>
+            </div>
+            <iframe id="spotifyPlayer" title="Pemutar Spotify: Lagu pilihan 01" src="https://open.spotify.com/embed/track/5V02ItrZKBi8aGjKrKJpFa?utm_source=generator" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+          <p class="music-footnote">Pilih lagu untuk memuatnya di player, lalu tekan ▶ pada player Spotify untuk memutar. Jika embed tidak tersedia di browser atau wilayahmu, tekan ↗ untuk membukanya di Spotify.</p>
+        </section>
+        <footer class="site-footer"><span>HALAMAN KECIL DARI <span data-editable="name">NAMA KAMU</span></span><button class="footer-home" type="button" data-go-home><span aria-hidden="true">↑</span> Kembali ke halaman utama</button><span>TERIMA KASIH SUDAH MAMPIR ♡</span></footer>
+
+        <div class="pixel-pal" id="pixelPal">
+          <div class="speech" id="speech" aria-live="polite">Hai! Klik aku ya ✿</div>
+          <button class="pixel-button" id="pixelButton" type="button" aria-label="Ajak ngobrol teman pixel">
+            <svg viewBox="0 0 64 88" aria-label="Teman pixel berkerudung ivory, mini dress pink, dan rok putih tulang" role="img" shape-rendering="crispEdges">
+              <rect x="24" y="2" width="16" height="4" fill="#7e8270"/><rect x="18" y="6" width="28" height="4" fill="#f3ead7"/><rect x="14" y="10" width="36" height="8" fill="#f3ead7"/><rect x="10" y="18" width="44" height="8" fill="#f3ead7"/><rect x="8" y="26" width="48" height="20" fill="#f3ead7"/><rect x="14" y="30" width="36" height="14" fill="#dfb49e"/><rect x="12" y="34" width="8" height="14" fill="#f3ead7"/><rect x="44" y="34" width="8" height="14" fill="#f3ead7"/><rect x="22" y="34" width="4" height="4" fill="#514f42"/><rect x="38" y="34" width="4" height="4" fill="#514f42"/><rect x="28" y="40" width="8" height="3" fill="#a96568"/><rect x="20" y="46" width="24" height="8" fill="#e6a5a5"/><rect x="16" y="54" width="32" height="8" fill="#e6a5a5"/><rect x="20" y="62" width="24" height="8" fill="#f2eadc"/><rect x="18" y="70" width="28" height="6" fill="#f2eadc"/><rect x="18" y="76" width="10" height="6" fill="#dfb49e"/><rect x="36" y="76" width="10" height="6" fill="#dfb49e"/><rect x="14" y="82" width="14" height="4" fill="#8f9f83"/><rect x="36" y="82" width="14" height="4" fill="#8f9f83"/><rect x="6" y="32" width="4" height="14" fill="#f3ead7"/><rect x="54" y="32" width="4" height="14" fill="#f3ead7"/><rect x="4" y="44" width="8" height="6" fill="#dfb49e"/><rect x="52" y="44" width="8" height="6" fill="#dfb49e"/>
+            </svg>
+          </button>
+          <span>little pixel friend</span>
+        </div>
+      </section>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog class="operator-dialog" id="operatorDialog" aria-labelledby="operatorTitle">
+      <form id="operatorForm">
+        <p class="dialog-kicker">AREA TERBATAS · OPERATOR</p>
+        <h2 id="operatorTitle">Halo kembali.</h2>
+        <p class="dialog-description">Masukkan PIN operator untuk mengubah nama, foto, isi halaman, dan tautan portofolio.</p>
+        <label class="pin-label" for="operatorPin">PIN OPERATOR</label>
+        <input id="operatorPin" type="password" inputmode="text" autocomplete="current-password" required aria-describedby="pinMessage" />
+        <p class="pin-message" id="pinMessage" aria-live="polite"></p>
+        <div class="dialog-actions">
+          <button class="dialog-cancel" id="cancelOperator" type="button">Kembali</button>
+          <button class="dialog-submit" type="submit">Masuk editor <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="dialog-security">PIN diperiksa di server. Semua perubahan disimpan ke Google Sheet sehingga tampil sama untuk setiap pengunjung.</p>
+      </form>
+    </dialog>
+    <script src="script.js"></script>
+  </body>
+</html>

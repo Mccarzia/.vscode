@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff0df" />
+    <meta
+      name="description"
+      content="Portofolio interaktif berbentuk buku pixel yang berisi cerita, skill, project, dan bukti belajar."
+    />
+    <title>Buku Kecilku — Portofolio Pixel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #51425f;
+        --muted: #84758e;
+        --paper: #fffaf0;
+        --pink: #f3a5bd;
+        --pink-dark: #c76388;
+        --mint: #a9dec1;
+        --mint-dark: #4b8c70;
+        --lavender: #d7c3f1;
+        --yellow: #ffe08d;
+        --pixel: "Silkscreen", "Courier New", monospace;
+        --shadow-pixel: 5px 5px 0 #8e78aa, 10px 10px 0 #efabc1;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { min-width: 320px; min-height: 100%; scroll-behavior: smooth; }
+      [hidden] { display: none !important; }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 8% 18%, #b4e6cc 0 7px, transparent 8px),
+          radial-gradient(circle at 88% 19%, #ffdc84 0 6px, transparent 7px),
+          radial-gradient(circle at 84% 82%, #efa9c2 0 8px, transparent 9px),
+          radial-gradient(circle at 14% 83%, #cbb8eb 0 6px, transparent 7px),
+          linear-gradient(135deg, #fff4e5, #fff0f2 54%, #eee8ff);
+        font-family: var(--pixel);
+        image-rendering: pixelated;
+      }
+
+      button, input { color: inherit; font: inherit; }
+      button, a { -webkit-tap-highlight-color: transparent; }
+      button:focus-visible, a:focus-visible, input:focus-visible, [contenteditable="true"]:focus-visible {
+        outline: 3px dashed var(--pink-dark);
+        outline-offset: 4px;
+      }
+      [hidden] { display: none !important; }
+
+      .app {
+        width: min(1120px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 22px 0 38px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--ink);
+        font-size: 12px;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border: 2px solid white;
+        background: var(--pink);
+        box-shadow: 3px 3px 0 #b6597b;
+        transform: rotate(-5deg);
+      }
+
+      .top-actions { display: flex; align-items: center; gap: 10px; }
+
+      .tiny-note {
+        color: var(--muted);
+        font-size: 8px;
+        line-height: 1.8;
+        text-align: right;
+      }
+
+      .pixel-button {
+        min-height: 40px;
+        padding: 9px 13px;
+        border: 2px solid #fff;
+        border-radius: 2px;
+        background: var(--lavender);
+        box-shadow: 3px 3px 0 #927cad;
+        cursor: pointer;
+        font-size: 9px;
+        transition: transform .16s ease, box-shadow .16s ease;
+      }
+
+      .pixel-button:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 #927cad; }
+      .pixel-button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #927cad; }
+
+      .cover-stage {
+        display: grid;
+        min-height: min(760px, calc(100svh - 95px));
+        place-items: center;
+        perspective: 1300px;
+      }
+
+      .cover {
+        position: relative;
+        display: flex;
+        width: min(490px, 100%);
+        min-height: 620px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 48px 30px 34px;
+        border: 5px solid white;
+        background:
+          linear-gradient(90deg, transparent 0 24px, #ffffff35 25px 28px, transparent 29px),
+          linear-gradient(145deg, #c8efd5, #dce8ff 52%, #f6c7d7);
+        box-shadow: 8px 8px 0 #927cad, 16px 16px 0 #eca9be, 0 35px 70px #65507735;
+        text-align: center;
+        transform: rotateY(-7deg) rotateX(2deg);
+        transition: transform .35s ease, box-shadow .35s ease;
+      }
+
+      .cover:hover {
+        box-shadow: 8px 8px 0 #927cad, 16px 16px 0 #eca9be, 0 42px 78px #65507740;
+        transform: rotateY(-2deg) rotateX(0) translateY(-4px);
+      }
+
+      .cover::before, .cover::after {
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        background: var(--yellow);
+        box-shadow: 12px 0 var(--yellow), 24px 0 var(--yellow), 0 12px var(--yellow),
+          12px 12px var(--pink), 24px 12px var(--yellow), 12px 24px var(--yellow),
+          24px 24px var(--lavender), 36px 24px var(--lavender), 24px 36px var(--lavender);
+        content: "";
+      }
+
+      .cover::before { top: 60px; left: -44px; }
+      .cover::after { right: -44px; bottom: 76px; background: var(--mint); box-shadow: 12px 0 var(--mint), 24px 0 var(--mint), 0 12px var(--mint), 12px 12px var(--pink), 24px 12px var(--mint), 12px 24px var(--mint), 24px 24px var(--lavender), 36px 24px var(--lavender), 24px 36px var(--lavender); }
+
+      .cover-meta {
+        position: absolute;
+        top: 23px;
+        right: 24px;
+        left: 24px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        color: #647d70;
+        font-size: 8px;
+      }
+
+      .avatar-wrap {
+        position: relative;
+        display: grid;
+        width: 174px;
+        height: 174px;
+        place-items: center;
+        margin-bottom: 22px;
+      }
+
+      .avatar-wrap::before, .avatar-wrap::after {
+        position: absolute;
+        inset: 3px;
+        border: 3px dashed #66aa88;
+        content: "";
+        transform: rotate(12deg);
+      }
+
+      .avatar-wrap::after { inset: 13px -4px; border-color: #df82a1; transform: rotate(-18deg); }
+
+      .avatar {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        width: 124px;
+        height: 124px;
+        place-items: center;
+        border: 6px solid white;
+        background: repeating-linear-gradient(135deg, #a9dec1 0 12px, #ffdc84 12px 24px, #f3a5bd 24px 36px, #d7c3f1 36px 48px);
+        box-shadow: 5px 5px 0 #8e78aa, 10px 10px 0 #e7a1bb;
+        color: white;
+        font-size: 43px;
+        text-shadow: 3px 3px #8e78aa;
+        transform: rotate(-4deg);
+      }
+
+      .avatar img, .profile-icon img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
+      .avatar img { position: absolute; inset: 0; }
+      .profile-icon img { position: absolute; inset: 0; }
+      .avatar-placeholder, .profile-placeholder { pointer-events: none; }
+      .photo-upload {
+        display: none;
+        min-height: 31px;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 8px;
+        border: 2px solid white;
+        color: white;
+        background: #9879bb;
+        box-shadow: 2px 2px 0 #735b91;
+        cursor: pointer;
+        font-size: 7px;
+        text-align: center;
+      }
+      .editor-on .photo-upload { display: inline-flex; }
+      .cover-photo-upload { position: absolute; z-index: 3; right: 7px; bottom: 1px; }
+
+      .avatar-spark {
+        position: absolute;
+        z-index: 2;
+        color: #b27b12;
+        font-size: 22px;
+        text-shadow: 2px 2px white;
+      }
+
+      .avatar-spark.one { top: 4px; right: 11px; }
+      .avatar-spark.two { bottom: 12px; left: 4px; color: #8d68ad; }
+
+      .cover-kicker { margin: 0 0 12px; color: #48836b; font-size: 8px; }
+      .cover h1 { margin: 0; color: #58466e; font-size: clamp(20px, 4vw, 29px); line-height: 1.8; text-shadow: 3px 3px white, 5px 5px #cdb8e4; }
+      .cover h1 span { color: #4b8c70; }
+      .cover-name { min-height: 18px; margin: 4px 0 0; color: #bd5f82; font-size: 12px; }
+      .cover-subtitle { max-width: 300px; margin: 14px 0 0; color: #786b84; font-size: 9px; line-height: 2; }
+
+      .open-book {
+        min-height: 48px;
+        margin-top: 24px;
+        padding: 11px 20px;
+        border: 3px solid white;
+        color: white;
+        background: #4f9978;
+        box-shadow: 4px 4px 0 #397358, 8px 8px 0 #d995b0;
+        cursor: pointer;
+        font-size: 12px;
+        transition: transform .15s ease;
+      }
+
+      .open-book:hover { transform: translate(-2px, -2px); }
+      .cover-footer { margin-top: 27px; color: #786b84; font-size: 7px; }
+
+      .book-shell { perspective: 1600px; }
+
+      .book {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(210px, .7fr) minmax(0, 1.7fr);
+        gap: 22px;
+        transform-style: preserve-3d;
+        transition: transform .2s ease;
+      }
+
+      .book.is-tilting { transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)); }
+
+      .contents, .page-stack {
+        position: relative;
+        min-height: 580px;
+        border: 4px solid white;
+        background:
+          linear-gradient(90deg, transparent 49%, #ffffff45 50%, transparent 51%),
+          linear-gradient(0deg, transparent 49%, #ffffff45 50%, transparent 51%),
+          linear-gradient(145deg, #c8eed1, #dce9ff 58%, #eedcf7);
+        background-size: 10px 10px, 10px 10px, auto;
+        box-shadow: 6px 6px 0 #91c6a5, 12px 12px 0 #d0addb, 0 20px 36px #64527825;
+      }
+
+      .contents { display: flex; flex-direction: column; padding: 24px 18px 17px; transform: translateZ(8px); }
+      .contents-title { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 2px dashed #9bc7a6; color: #4e8066; font-size: 10px; }
+      .contents-title span:last-child { color: #d76f91; font-size: 17px; }
+      .contents-intro { margin: 14px 0 13px; color: #685c70; font-size: 10px; line-height: 1.9; }
+      .toc { display: grid; gap: 7px; }
+
+      .toc-link {
+        display: flex;
+        min-height: 43px;
+        align-items: center;
+        gap: 9px;
+        padding: 7px 8px;
+        border: 2px solid transparent;
+        color: #625775;
+        background: #fffaf080;
+        cursor: pointer;
+        font-size: 10px;
+        text-align: left;
+        transition: transform .15s ease, background .15s ease;
+      }
+
+      .toc-link span { color: #90659d; font-size: 10px; }
+      .toc-link:hover { transform: translateX(3px); background: white; }
+      .toc-link.active { border-color: white; color: #3e7658; background: #fff4c9; box-shadow: 3px 3px 0 #a6cba3; }
+      .toc-bottom { margin-top: auto; padding-top: 18px; color: #6c5e76; font-size: 9px; line-height: 2; }
+
+      .page-stack {
+        min-width: 0;
+        padding: 23px 27px 18px;
+        border-color: white;
+        background:
+          linear-gradient(90deg, transparent 0 26px, #dcb4d432 27px 29px, transparent 30px),
+          repeating-linear-gradient(0deg, #fffaf0 0 33px, #f0dfd5 34px);
+        box-shadow: 6px 6px 0 #eee0cc, 12px 12px 0 #cfb3df, 0 22px 38px #64527825;
+        transform: translateZ(8px);
+        font-family: var(--pixel);
+      }
+
+      .page-stack::before {
+        position: absolute;
+        top: 8px;
+        bottom: 8px;
+        left: -13px;
+        width: 12px;
+        background: repeating-linear-gradient(0deg, #82c19b 0 12px, #f3a5bd 12px 24px, #ffe08d 24px 36px);
+        box-shadow: 3px 0 white, 6px 0 #bca7d4;
+        content: "";
+      }
+
+      .page-top, .page-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #765f80; font-size: 11px; }
+      .page-top { padding-bottom: 13px; border-bottom: 1px solid #eadbd7; }
+      .page-body { min-height: 455px; padding: 25px 0 20px; animation: page-in .28s ease both; }
+      @keyframes page-in { from { opacity: .3; transform: translateX(10px) rotateY(-8deg); } to { opacity: 1; transform: translateX(0) rotateY(0); } }
+      .eyebrow { margin: 0; color: #4c795c; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+      .page-body h2 { margin: 13px 0 11px; color: #58466e; font-family: var(--pixel); font-size: clamp(25px, 3.5vw, 34px); line-height: 1.55; text-shadow: 2px 2px white, 4px 4px #e4d3e8; }
+      .page-body h2 em { color: #4d8c6b; font-style: normal; }
+      .page-copy { max-width: 580px; margin: 0; color: #55485e; font-size: 16px; line-height: 1.75; }
+
+      .profile-card {
+        display: grid;
+        grid-template-columns: 74px 1fr;
+        align-items: center;
+        gap: 14px;
+        max-width: 400px;
+        margin: 14px 0;
+        padding: 12px;
+        border: 2px solid white;
+        background: #e4f2dc;
+        box-shadow: 3px 3px 0 #a4cba3;
+      }
+
+      .profile-photo-wrap { display: grid; justify-items: center; gap: 7px; }
+      .profile-icon { position: relative; display: grid; width: 68px; height: 68px; overflow: hidden; place-items: center; border: 3px solid white; color: white; background: #efa8be; box-shadow: 3px 3px 0 #9c7eaf; font-size: 28px; }
+      .about-photo-upload { max-width: 100px; }
+      .profile-card small, .fact small { color: #745a80; font-size: 11px; font-weight: 700; }
+      .profile-card strong { display: block; margin-top: 7px; color: #365f47; font-size: 14px; line-height: 1.65; }
+
+      .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; max-width: 560px; margin-top: 13px; }
+      .fact { min-height: 60px; padding: 9px 10px; border: 1px solid white; background: #fff3d4; }
+      .fact:nth-child(2n) { background: #f8e6ee; }
+      .fact p { margin: 7px 0 0; color: #493d55; font-size: 14px; line-height: 1.6; }
+      .mini-note { margin: 17px 0 0; color: #984060; font-size: 13px; line-height: 1.7; }
+
+      .skill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+      .skill-card { padding: 12px 13px 8px; border: 3px solid white; background: repeating-linear-gradient(135deg, #e0f2dc 0 12px, #d5efea 12px 24px); box-shadow: 4px 4px 0 #91bd9a; }
+      .skill-card.hard { background: repeating-linear-gradient(135deg, #f9e3ed 0 12px, #fff0cf 12px 24px); box-shadow: 4px 4px 0 #d39bb9; }
+      .skill-card h3 { margin: 0; padding-bottom: 10px; border-bottom: 2px dashed #a3cba4; color: #3e7054; font-size: 13px; }
+      .skill-card.hard h3 { border-color: #dfaebe; color: #ad5979; }
+      .skill-card ul { display: grid; gap: 10px; margin: 12px 0 2px; padding: 0; list-style: none; }
+      .skill-card li { display: flex; align-items: flex-start; gap: 8px; color: #493d55; font-size: 15px; line-height: 1.6; }
+      .skill-card li::before { color: #d27b98; content: "✦"; }
+      .hard li::before { color: #679779; content: "▣"; }
+
+      .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; margin-top: 16px; }
+      .project-card { display: flex; min-height: 190px; flex-direction: column; padding: 12px; border: 3px solid white; background: repeating-linear-gradient(135deg, #e5f2df 0 12px, #d9eee9 12px 24px); box-shadow: 4px 4px 0 #9ac5a0; }
+      .project-card:nth-child(2n) { background: repeating-linear-gradient(135deg, #f9e4ed 0 12px, #fff0d0 12px 24px); box-shadow: 4px 4px 0 #d7a1b9; }
+      .project-card small { color: #70567c; font-size: 11px; }
+      .project-card h3 { margin: 15px 0 7px; color: #4c3b64; font-size: 17px; line-height: 1.55; }
+      .project-card p { margin: 0 0 10px; color: #51465b; font-size: 14px; line-height: 1.65; }
+      .project-card a { margin-top: auto; color: #2f684a; font-size: 12px; font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+      .link-editor { display: grid; gap: 4px; margin-top: 9px; color: #654d72; font-size: 12px; }
+      .link-editor input { width: 100%; min-height: 42px; padding: 8px; border: 2px solid #c5b2da; background: white; font: 14px var(--pixel); }
+
+      .learning-list { display: grid; gap: 10px; margin-top: 17px; }
+      .learning-item { position: relative; display: grid; grid-template-columns: 43px minmax(0, 1fr); gap: 12px; padding: 12px; border: 2px solid white; background: #f3eafa; box-shadow: 3px 3px 0 #c4a8d1; }
+      .learning-item:nth-child(2n) { background: #e5f3e3; box-shadow: 3px 3px 0 #9bc5a2; }
+      .learning-icon { display: grid; width: 40px; height: 40px; place-items: center; color: white; background: #aa85c1; box-shadow: 3px 3px 0 #806395; font-size: 17px; }
+      .learning-item:nth-child(2n) .learning-icon { background: #76ad89; box-shadow: 3px 3px 0 #548064; }
+      .learning-item small { color: #70567c; font-size: 12px; font-weight: 700; }
+      .learning-item h3 { margin: 6px 0 4px; color: #4c3b64; font-size: 17px; line-height: 1.5; }
+      .learning-item p { margin: 0; color: #51465b; font-size: 14px; line-height: 1.65; }
+      .learning-item a { display: inline-block; margin-top: 7px; color: #2f684a; font-size: 12px; font-weight: 700; }
+      .learning-controls { display: grid; gap: 10px; margin-top: 13px; }
+      .add-learning { justify-self: start; }
+      .learning-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 12px; border: 2px dashed #b69bc8; background: #fffaf0; }
+      .learning-form label { display: grid; gap: 5px; color: #654d72; font-size: 12px; }
+      .learning-form label:nth-child(3), .learning-form label:nth-child(4) { grid-column: 1 / -1; }
+      .learning-form input, .learning-form textarea { width: 100%; min-height: 44px; padding: 8px; border: 2px solid #d5c3e3; background: white; font: 14px var(--pixel); }
+      .learning-form textarea { min-height: 60px; resize: vertical; }
+      .learning-form-actions { display: flex; flex-wrap: wrap; gap: 8px; grid-column: 1 / -1; }
+      .learning-form-actions button { min-height: 36px; }
+      .remove-learning { position: absolute; top: 8px; right: 8px; display: none; padding: 6px 8px; border: 2px solid white; color: #8b4967; background: #f7dce5; box-shadow: 2px 2px 0 #c987a2; cursor: pointer; font: 11px var(--pixel); }
+      .editor-on .remove-learning { display: inline-block; }
+
+      .contact-list { display: grid; gap: 9px; max-width: 510px; margin-top: 18px; }
+      .contact-row { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 10px; min-height: 50px; padding: 7px 10px; border: 2px solid white; background: #f4eafa; }
+      .contact-row:nth-child(2n) { background: #e5f3e3; }
+      .contact-icon { display: grid; width: 30px; height: 30px; place-items: center; background: #f0a3ba; box-shadow: 2px 2px 0 #b66683; color: white; }
+      .contact-row small { display: block; margin-bottom: 5px; color: #745a80; font-size: 11px; font-weight: 700; }
+      .contact-row a, .contact-row p { margin: 0; color: #365f47; font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; }
+      .spotify-box { margin-top: 28px; padding: 16px; border: 3px solid white; background: linear-gradient(130deg, #dff3df, #f8e6ef 55%, #fff0c7); box-shadow: 5px 5px 0 #95c7a2, 10px 10px 0 #d5afd9, 0 16px 30px #62507720; }
+      .spotify-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+      .spotify-heading h2 { margin: 0; color: #3b654d; font-size: 14px; }
+      .spotify-heading span { color: #675977; font: 11px var(--pixel); }
+      .spotify-content { display: grid; grid-template-columns: minmax(190px, .75fr) minmax(0, 1.25fr); gap: 12px; align-items: center; }
+      .spotify-tracks { display: grid; gap: 7px; }
+      .spotify-track-row { display: grid; grid-template-columns: minmax(0, 1fr) 40px; gap: 6px; }
+      .spotify-track { display: flex; min-height: 44px; align-items: center; gap: 9px; padding: 8px 10px; border: 2px solid white; color: #51455f; background: #fffaf0a8; box-shadow: 2px 2px 0 #d7b6dc; cursor: pointer; font: 14px var(--pixel); text-align: left; }
+      .spotify-track span:first-child { color: #28834e; font-size: 16px; }
+      .spotify-track[aria-pressed="true"] { color: #246340; background: #e4f6df; box-shadow: 3px 3px 0 #82b997; }
+      .spotify-open { display: grid; min-height: 44px; place-items: center; border: 2px solid white; color: #456b55; background: #fff0c7; box-shadow: 2px 2px 0 #d5afd9; font: 18px var(--pixel); text-decoration: none; }
+      .spotify-embed { display: block; width: 100%; min-width: 0; height: 152px; border: 0; border-radius: 12px; background: #fff; }
+      .spotify-note { margin: 9px 0 0; color: #55485e; font: 12px/1.8 var(--pixel); }
+      .page-footer { padding: 12px 72px 0 0; border-top: 1px solid #eadbd7; }
+      .turn-button { width: 38px; height: 34px; border: 2px solid white; color: white; background: #76ae8b; box-shadow: 3px 3px 0 #4d8062; cursor: pointer; font-size: 12px; }
+      .turn-button:disabled { color: #8d7e94; background: #e8e0e8; box-shadow: 2px 2px 0 #c5b6ca; cursor: not-allowed; }
+
+      .site-footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 35px; padding-top: 14px; border-top: 1px dashed #bba8ca; color: #81738b; font-size: 7px; }
+      .mascot { position: fixed; right: max(18px, calc((100vw - 1120px) / 2)); bottom: 13px; z-index: 5; display: grid; justify-items: center; }
+      .mascot button { display: grid; width: 66px; height: 80px; place-items: end center; border: 0; background: transparent; cursor: pointer; }
+      .mascot button span { font-size: 47px; filter: drop-shadow(4px 4px 0 #e893b0); animation: bob 2s steps(2, end) infinite; }
+      @keyframes bob { 50% { transform: translateY(-5px); } }
+      .mascot-label { padding: 4px 6px; border: 2px solid white; background: #fff4c9; box-shadow: 2px 2px 0 #d994ae; color: #665777; font-size: 6px; }
+      .speech { position: absolute; right: 59px; bottom: 60px; width: max-content; max-width: min(235px, 62vw); padding: 10px; border: 2px solid white; background: #fff4c9; box-shadow: 3px 3px 0 #d994ae; color: #58476d; font-size: 8px; line-height: 1.8; opacity: 0; pointer-events: none; transform: translateY(5px); transition: opacity .16s ease, transform .16s ease; }
+      .mascot.show .speech { opacity: 1; transform: translateY(0); }
+      .toast { position: fixed; z-index: 8; right: 18px; bottom: 18px; max-width: min(380px, calc(100vw - 36px)); padding: 10px 13px; border: 2px solid white; background: #e3f3d9; box-shadow: 3px 3px 0 #bd91b4; color: #4c7659; font-size: 8px; line-height: 1.8; opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity .18s ease, transform .18s ease; }
+      .toast.visible { opacity: 1; transform: translateY(0); }
+      .editor-on [contenteditable="true"] { outline: 2px dashed #d5799a; outline-offset: 3px; background: #fff4c9; }
+
+      @media (max-width: 760px) {
+        .app { width: min(640px, calc(100% - 28px)); }
+        .book { grid-template-columns: 1fr; gap: 14px; }
+        .contents { min-height: 0; padding: 15px; }
+        .contents-intro, .toc-bottom { display: none; }
+        .contents-title { padding-bottom: 9px; }
+        .toc { display: flex; overflow-x: auto; gap: 5px; padding: 9px 2px 3px; }
+        .toc-link { min-height: 38px; flex: 0 0 auto; padding: 6px 9px; }
+        .page-stack { min-height: 570px; padding: 20px 22px 16px; }
+        .page-body { min-height: 445px; }
+        .mascot { right: 5px; bottom: 3px; transform: scale(.85); transform-origin: bottom right; }
+      }
+
+      @media (max-width: 480px) {
+        .app { width: calc(100% - 22px); padding-top: 12px; }
+        .topbar { margin-bottom: 16px; }
+        .brand { font-size: 9px; }
+        .tiny-note { display: none; }
+        .cover-stage { min-height: calc(100svh - 70px); }
+        .cover { min-height: min(610px, calc(100svh - 60px)); padding: 42px 18px 28px; box-shadow: 5px 5px 0 #927cad, 10px 10px 0 #eca9be, 0 25px 50px #65507735; transform: none; }
+        .cover-meta { top: 17px; right: 14px; left: 14px; font-size: 6px; }
+        .avatar-wrap { width: 155px; height: 155px; }
+        .avatar { width: 110px; height: 110px; }
+        .cover h1 { font-size: 20px; }
+        .page-stack { min-height: 620px; padding: 16px 16px 13px; }
+        .page-body { min-height: 505px; padding-top: 20px; }
+        .page-footer { padding-right: 58px; }
+        .page-body h2 { font-size: 25px; }
+        .page-copy { font-size: 15px; }
+        .profile-card { grid-template-columns: 58px 1fr; gap: 10px; padding: 9px; }
+        .profile-icon { width: 54px; height: 54px; font-size: 23px; }
+        .facts { gap: 6px; }
+        .fact { padding: 8px; }
+        .skill-grid, .project-grid { grid-template-columns: 1fr; gap: 9px; }
+        .skill-card { padding: 9px 11px 7px; }
+        .skill-card ul { gap: 7px; margin-top: 9px; }
+        .learning-form { grid-template-columns: 1fr; }
+        .learning-form label:nth-child(3), .learning-form label:nth-child(4) { grid-column: auto; }
+        .learning-form-actions { grid-column: auto; }
+        .project-card { min-height: 155px; }
+        .spotify-box { padding: 12px; }
+        .spotify-content { grid-template-columns: 1fr; }
+        .spotify-tracks { grid-template-columns: 1fr; }
+        .spotify-embed { height: 152px; }
+        .learning-item h3, .project-card h3 { font-size: 16px; }
+        .learning-item p, .project-card p { font-size: 14px; }
+        .site-footer { flex-direction: column; font-size: 6px; }
+        .mascot { right: 0; transform: scale(.72); }
+        .toast { right: auto; bottom: 14px; left: 11px; font-size: 7px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <a class="brand" href="#" id="homeButton" aria-label="Kembali ke sampul buku">
+          <span class="brand-mark" aria-hidden="true">✿</span>
+          <span>BUKU KECILKU.EXE</span>
+        </a>
+        <div class="top-actions">
+          <span class="tiny-note">PIXEL WORLD · VOL. 01<br />CERITA YANG TERUS TUMBUH</span>
+          <button class="pixel-button" id="editButton" type="button" aria-pressed="false">✎ EDIT ISI</button>
+        </div>
+      </header>
+
+      <section class="cover-stage" id="cover" aria-labelledby="coverTitle">
+        <div class="cover">
+          <div class="cover-meta"><span>CATATAN PERSONAL</span><span>VOL. 01 · 2026</span></div>
+          <div class="avatar-wrap">
+            <span class="avatar-spark one" aria-hidden="true">✦</span>
+            <span class="avatar-spark two" aria-hidden="true">✧</span>
+            <div class="avatar">
+              <img id="coverProfileImage" alt="Foto profil pada sampul" hidden />
+              <span class="avatar-placeholder" id="coverProfilePlaceholder" aria-hidden="true">♡</span>
+            </div>
+            <label class="photo-upload cover-photo-upload" for="photoInput">✎ GANTI FOTO</label>
+          </div>
+          <p class="cover-kicker">✦ HALO, SENANG KAMU DI SINI ✦</p>
+          <h1 id="coverTitle">MY LITTLE<br /><span>PORTFOLIO</span></h1>
+          <p class="cover-name" data-editable="name">Nama Kamu</p>
+          <p class="cover-subtitle">sekumpulan cerita, mimpi, dan hal-hal yang sedang kupelajari</p>
+          <button class="open-book" id="openBook" type="button">BUKA BUKUKU ↗</button>
+          <span class="cover-footer">dibuat dengan sepenuh hati ♡</span>
+        </div>
+      </section>
+
+      <section class="book-shell" id="portfolio" hidden aria-label="Buku portofolio">
+        <div class="book" id="book">
+          <aside class="contents" aria-label="Daftar isi">
+            <div class="contents-title"><span>DAFTAR ISI</span><span aria-hidden="true">✿</span></div>
+            <p class="contents-intro">Pilih bab untuk membuka cerita di buku ini.</p>
+            <nav class="toc" aria-label="Halaman buku">
+              <button class="toc-link active" type="button" data-page="about"><span>01</span> Tentang aku</button>
+              <button class="toc-link" type="button" data-page="skills"><span>02</span> Skill-ku</button>
+              <button class="toc-link" type="button" data-page="projects"><span>03</span> Project</button>
+              <button class="toc-link" type="button" data-page="learning"><span>04</span> Bukti belajar</button>
+              <button class="toc-link" type="button" data-page="contact"><span>05</span> Kontak</button>
+            </nav>
+            <p class="toc-bottom">✧ halaman kecil, mimpi besar<br />dibalik perlahan ya! ♡</p>
+          </aside>
+
+          <section class="page-stack" aria-label="Halaman buku" aria-live="polite">
+            <div class="page-top"><span>MY LITTLE BOOK OF ME</span><span id="pageNumber">01 / 05</span></div>
+
+            <article class="page-body" data-content="about" aria-labelledby="aboutTitle">
+              <p class="eyebrow">✦ HALO, SENANG KENAL ✦</p>
+              <h2 id="aboutTitle">Hai, aku<br /><em data-editable="name">Nama Kamu</em>!</h2>
+              <p class="page-copy" data-editable="about">Aku seorang pelajar yang suka mencoba hal baru, mengubah ide kecil menjadi karya, dan terus bertumbuh lewat proses belajar. Ini sedikit cerita tentang diriku.</p>
+              <div class="profile-card">
+                <div class="profile-photo-wrap">
+                  <div class="profile-icon">
+                    <img id="aboutProfileImage" alt="Foto profil pada halaman data diri" hidden />
+                    <span class="profile-placeholder" id="aboutProfilePlaceholder" aria-hidden="true">૮ ˶ᵔ ᵕ ᵔ˶ ა</span>
+                  </div>
+                  <label class="photo-upload about-photo-upload" for="photoInput">✎ GANTI FOTO</label>
+                </div>
+                <div><small>KENALAN YUK!</small><strong data-editable="full-name">Nama lengkap kamu</strong><strong data-editable="role">Pelajar · Kreator pemula</strong></div>
+              </div>
+              <div class="facts">
+                <div class="fact"><small>📍 DOMISILI</small><p data-editable="location">Kota, Indonesia</p></div>
+                <div class="fact"><small>🎂 TANGGAL LAHIR</small><p data-editable="birthday">Tanggal lahirmu</p></div>
+                <div class="fact"><small>🏫 SEKOLAH / KAMPUS</small><p data-editable="school">Nama sekolah atau kampus</p></div>
+                <div class="fact"><small>📚 JURUSAN</small><p data-editable="major">Jurusan atau bidang yang dipelajari</p></div>
+              </div>
+              <p class="mini-note" data-editable="about-note">"Sedikit demi sedikit, lama-lama jadi bukit." ✿</p>
+            </article>
+
+            <article class="page-body" data-content="skills" aria-labelledby="skillsTitle" hidden>
+              <p class="eyebrow">✦ CARA AKU BERKARYA ✦</p>
+              <h2 id="skillsTitle">Skill yang<br /><em>terus bertumbuh.</em></h2>
+              <p class="page-copy" data-editable="skills-intro">Kemampuan ini selalu aku asah sambil belajar dan berkolaborasi dengan orang lain.</p>
+              <div class="skill-grid">
+                <section class="skill-card" aria-labelledby="softSkillsTitle">
+                  <h3 id="softSkillsTitle">♡ SOFT SKILL</h3>
+                  <ul>
+                    <li data-editable="soft-1">Komunikasi</li>
+                    <li data-editable="soft-2">Kerja sama tim</li>
+                    <li data-editable="soft-3">Manajemen waktu</li>
+                    <li data-editable="soft-4">Berpikir kreatif</li>
+                  </ul>
+                </section>
+                <section class="skill-card hard" aria-labelledby="hardSkillsTitle">
+                  <h3 id="hardSkillsTitle">✿ HARD SKILL</h3>
+                  <ul>
+                    <li data-editable="hard-1">HTML & CSS</li>
+                    <li data-editable="hard-2">Canva / desain</li>
+                    <li data-editable="hard-3">Microsoft Office</li>
+                    <li data-editable="hard-4">Kemampuan lainnya</li>
+                  </ul>
+                </section>
+              </div>
+              <p class="mini-note">Klik tombol edit untuk menyesuaikan poin skill-mu ✧</p>
+            </article>
+
+            <article class="page-body" data-content="projects" aria-labelledby="projectsTitle" hidden>
+              <p class="eyebrow">✦ DIBUAT DENGAN HATI ✦</p>
+              <h2 id="projectsTitle">Project<br /><em>pilihanku.</em></h2>
+              <p class="page-copy">Beberapa karya dan latihan yang jadi bagian dari perjalananku.</p>
+              <div class="project-grid">
+                <article class="project-card">
+                  <small>01 · PROJECT</small>
+                  <h3 data-editable="project-title-1">Website pertamaku</h3>
+                  <p data-editable="project-desc-1">Halaman web sederhana yang kubuat untuk belajar HTML, CSS, dan menyusun tampilan.</p>
+                  <a data-project-link="1" href="https://example.com" target="_blank" rel="noopener noreferrer">LIHAT PROJECT ↗</a>
+                  <label class="link-editor" hidden>LINK PROJECT<input data-link-input="1" type="url" placeholder="https://contoh.com" /></label>
+                </article>
+                <article class="project-card">
+                  <small>02 · PROJECT</small>
+                  <h3 data-editable="project-title-2">Desain poster kreatif</h3>
+                  <p data-editable="project-desc-2">Eksplorasi warna dan tipografi untuk menyampaikan ide dengan cara yang menyenangkan.</p>
+                  <a data-project-link="2" href="https://example.com" target="_blank" rel="noopener noreferrer">LIHAT PROJECT ↗</a>
+                  <label class="link-editor" hidden>LINK PROJECT<input data-link-input="2" type="url" placeholder="https://contoh.com" /></label>
+                </article>
+              </div>
+              <p class="mini-note">Project kecil tetap layak dirayakan ✧</p>
+            </article>
+
+            <article class="page-body" data-content="learning" aria-labelledby="learningTitle" hidden>
+              <p class="eyebrow">✦ PROSES JUGA SEBUAH KARYA ✦</p>
+              <h2 id="learningTitle">Bukti<br /><em>belajarku.</em></h2>
+              <p class="page-copy">Perjalanan belajar Matematika Informatika bersama Pa Iin TA 2026-1</p>
+              <div class="learning-list" id="learningList"></div>
+              <div class="learning-controls">
+                <button class="pixel-button add-learning" id="addLearningButton" type="button" hidden>＋ TAMBAH BUKTI BELAJAR</button>
+                <form class="learning-form" id="learningForm" hidden>
+                  <label>TANGGAL / JENIS KEGIATAN<input name="date" type="text" maxlength="80" placeholder="2026 · KELAS ONLINE" /></label>
+                  <label>JUDUL BUKTI<input name="title" type="text" maxlength="100" required placeholder="Contoh: Belajar dasar desain web" /></label>
+                  <label>DESKRIPSI<textarea name="description" maxlength="400" required placeholder="Ceritakan hal yang dipelajari atau bukti ini."></textarea></label>
+                  <label>TAUTAN BUKTI (OPSIONAL)<input name="url" type="url" placeholder="https://contoh.com" /></label>
+                  <div class="learning-form-actions">
+                    <button class="pixel-button" type="submit">SIMPAN BUKTI ♡</button>
+                    <button class="pixel-button" id="cancelLearningButton" type="button">BATAL</button>
+                  </div>
+                </form>
+              </div>
+              <p class="mini-note">Tambah bukti belajar sebanyak yang kamu perlukan ✿</p>
+            </article>
+
+            <article class="page-body" data-content="contact" aria-labelledby="contactTitle" hidden>
+              <p class="eyebrow">✦ SURAT SELALU DITERIMA ✦</p>
+              <h2 id="contactTitle">Mari saling<br /><em>menyapa.</em></h2>
+              <p class="page-copy" data-editable="contact-intro">Punya ide, pertanyaan, atau ingin berkolaborasi? Aku senang sekali kalau kita bisa ngobrol!</p>
+              <div class="contact-list">
+                <div class="contact-row"><span class="contact-icon" aria-hidden="true">✉</span><div><small>EMAIL</small><a data-contact="email" href="mailto:namakamu@email.com" data-editable="email">namakamu@email.com</a></div></div>
+                <div class="contact-row"><span class="contact-icon" aria-hidden="true">☏</span><div><small>INSTAGRAM</small><a data-contact="instagram" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" data-editable="instagram">@usernamekamu</a></div></div>
+                <div class="contact-row"><span class="contact-icon" aria-hidden="true">☏</span><div><small>NOMOR KONTAK</small><p data-editable="contact-location">Kota, Indonesia</p></div></div>
+              </div>
+              <p class="mini-note">Terima kasih sudah mampir ke bukuku ♡</p>
+            </article>
+
+            <footer class="page-footer">
+              <button class="turn-button" id="previousPage" type="button" aria-label="Halaman sebelumnya" disabled>←</button>
+              <span>MADE WITH ♡ & DAYDREAMS</span>
+              <button class="turn-button" id="nextPage" type="button" aria-label="Halaman berikutnya">→</button>
+            </footer>
+          </section>
+        </div>
+        <section class="spotify-box" aria-labelledby="spotifyTitle">
+          <div class="spotify-heading">
+            <h2 id="spotifyTitle">🎧 MINI PLAYER SPOTIFY</h2>
+            <span>PILIH LAGU · LALU TEKAN PLAY ♡</span>
+          </div>
+          <div class="spotify-content">
+            <div class="spotify-tracks" aria-label="Pilih lagu untuk diputar">
+              <div class="spotify-track-row">
+                <button class="spotify-track" type="button" aria-pressed="true" data-spotify-track="5V02ItrZKBi8aGjKrKJpFa"><span aria-hidden="true">♫</span><span>Lagu pilihan 01</span></button>
+                <a class="spotify-open" href="https://open.spotify.com/intl-id/track/5V02ItrZKBi8aGjKrKJpFa" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 01 di Spotify">↗</a>
+              </div>
+              <div class="spotify-track-row">
+                <button class="spotify-track" type="button" aria-pressed="false" data-spotify-track="5XeFesFbtLpXzIVDNQP22n"><span aria-hidden="true">♫</span><span>Lagu pilihan 02</span></button>
+                <a class="spotify-open" href="https://open.spotify.com/intl-id/track/5XeFesFbtLpXzIVDNQP22n" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 02 di Spotify">↗</a>
+              </div>
+              <div class="spotify-track-row">
+                <button class="spotify-track" type="button" aria-pressed="false" data-spotify-track="1RFc6GvKrakOcP8qdtmA7q"><span aria-hidden="true">♫</span><span>Lagu pilihan 03</span></button>
+                <a class="spotify-open" href="https://open.spotify.com/intl-id/track/1RFc6GvKrakOcP8qdtmA7q" target="_blank" rel="noopener noreferrer" aria-label="Buka lagu pilihan 03 di Spotify">↗</a>
+              </div>
+            </div>
+            <iframe
+              class="spotify-embed"
+              id="spotifyPlayer"
+              title="Pemutar Spotify: Lagu pilihan 01"
+              src="https://open.spotify.com/embed/track/5V02ItrZKBi8aGjKrKJpFa?utm_source=generator"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p class="spotify-note">Pilih lagu lalu tekan tombol play pada player. Jika Spotify meminta login, gunakan tombol ↗ untuk membukanya langsung di Spotify.</p>
+        </section>
+      </section>
+
+      <footer class="site-footer"><span>HALAMAN KECIL DARI <span data-editable="name">NAMA KAMU</span></span><span>TERIMA KASIH SUDAH MAMPIR ♡</span></footer>
+    </main>
+
+    <div class="mascot" id="mascot">
+      <div class="speech" id="speech" aria-live="polite">Hai! Klik aku ya ✿</div>
+      <button id="mascotButton" type="button" aria-label="Ajak bicara teman pixel"><span aria-hidden="true">🐸</span></button>
+      <span class="mascot-label">PIXEL FRIEND</span>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <input id="photoInput" type="file" accept="image/*" hidden />
+
+    <script>
+      (() => {
+        const pageIds = ["about", "skills", "projects", "learning", "contact"];
+        const storageKey = "buku-kecilku-pixel-portfolio-v1";
+        const cover = document.querySelector("#cover");
+        const portfolio = document.querySelector("#portfolio");
+        const book = document.querySelector("#book");
+        const toast = document.querySelector("#toast");
+        const pageContents = [...document.querySelectorAll("[data-content]")];
+        const pageLinks = [...document.querySelectorAll(".toc-link[data-page]")];
+        const editButton = document.querySelector("#editButton");
+        const learningList = document.querySelector("#learningList");
+        const learningForm = document.querySelector("#learningForm");
+        const addLearningButton = document.querySelector("#addLearningButton");
+        const photoInput = document.querySelector("#photoInput");
+        const profileImages = [
+          document.querySelector("#coverProfileImage"),
+          document.querySelector("#aboutProfileImage"),
+        ];
+        const profilePlaceholders = [
+          document.querySelector("#coverProfilePlaceholder"),
+          document.querySelector("#aboutProfilePlaceholder"),
+        ];
+        let currentPage = 0;
+        let toastTimer;
+        let speechTimer;
+        const initialData = {
+          name: "Mecca Arzia Lutfita",
+          "full-name": "Mecca",
+          location: "Bandung, Jawa Barat",
+          birthday: "21 November 2007",
+          school: "Ma'soem University",
+          major: "Sistem Informasi",
+          "project-title-1": "Birthday.exe",
+          "project-desc-1": "A little greetings for my bestfriend",
+          "project-title-2": "Maybe this portofolio",
+          "project-desc-2": "Web portofolio interaktif, yg imuuuut",
+          "soft-1": "Komunikasi",
+          email: "Meccalutfita@gmail.com",
+          instagram: "@Mccarzia_",
+          "contact-location": "+62 851 4766 0729",
+          "learning-items": [
+            {
+              id: "starter-1",
+              date: "2026 · KELAS ONLINE",
+              title: "Membuat kalkulator sederhana",
+              description: "Menyusun halaman responsif dengan HTML dan CSS.",
+              url: "",
+            },
+            {
+              id: "starter-2",
+              date: "2025 · LATIHAN MANDIRI",
+              title: "Eksperimen karya pertama",
+              description: "Kumpulan proses, tugas, atau dokumentasi belajar.",
+              url: "",
+            },
+          ],
+        };
+        const saved = readSavedData();
+        const defaultLearningItems = [
+          {
+            id: "starter-1",
+            date: "2026 · KELAS ONLINE",
+            title: "Belajar dasar desain web",
+            description: "Menyusun halaman responsif dengan HTML dan CSS.",
+            url: "",
+          },
+          {
+            id: "starter-2",
+            date: "2025 · LATIHAN MANDIRI",
+            title: "Eksperimen karya pertama",
+            description: "Kumpulan proses, tugas, atau dokumentasi belajar.",
+            url: "",
+          },
+        ];
+        let learningItems = readLearningItems();
+
+        function readSavedData() {
+          try {
+            const value = localStorage.getItem(storageKey);
+            if (!value) return { ...initialData };
+            const parsed = JSON.parse(value);
+            if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+              return { ...initialData, ...parsed };
+            }
+          } catch (error) {
+            console.error("Data portofolio tidak dapat dibaca.", error);
+            showToast("Penyimpanan browser tidak tersedia; isi awal tetap digunakan.");
+          }
+          return { ...initialData };
+        }
+
+        function saveData() {
+          try {
+            localStorage.setItem(storageKey, JSON.stringify(saved));
+            return true;
+          } catch (error) {
+            console.error("Perubahan portofolio tidak dapat disimpan.", error);
+            showToast("Perubahan tampil, tetapi gagal disimpan di browser.");
+            return false;
+          }
+        }
+
+        function showToast(message) {
+          toast.textContent = message;
+          toast.classList.add("visible");
+          window.clearTimeout(toastTimer);
+          toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 2800);
+        }
+
+        function safeUrl(value) {
+          try {
+            const url = new URL(value.trim());
+            return ["http:", "https:"].includes(url.protocol) ? url.href : null;
+          } catch {
+            return null;
+          }
+        }
+
+        function showProfilePhoto(source) {
+          profileImages.forEach((image) => {
+            image.src = source;
+            image.hidden = false;
+          });
+          profilePlaceholders.forEach((placeholder) => {
+            placeholder.hidden = true;
+          });
+        }
+
+        if (typeof saved["profile-photo"] === "string" && saved["profile-photo"].startsWith("data:image/")) {
+          showProfilePhoto(saved["profile-photo"]);
+        }
+
+        photoInput.addEventListener("change", () => {
+          const [file] = photoInput.files;
+          if (!file) return;
+          if (!file.type.startsWith("image/") || file.type === "image/svg+xml") {
+            showToast("Pilih file foto seperti JPG, PNG, atau WEBP.");
+            photoInput.value = "";
+            return;
+          }
+          if (file.size > 10 * 1024 * 1024) {
+            showToast("Ukuran foto maksimal 10 MB ya.");
+            photoInput.value = "";
+            return;
+          }
+
+          const image = new Image();
+          const objectUrl = URL.createObjectURL(file);
+          image.addEventListener("load", () => {
+            URL.revokeObjectURL(objectUrl);
+            if (image.naturalWidth * image.naturalHeight > 40000000) {
+              showToast("Resolusi foto terlalu besar. Coba foto yang lebih kecil.");
+              photoInput.value = "";
+              return;
+            }
+            const scale = Math.min(1, 800 / Math.max(image.naturalWidth, image.naturalHeight));
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+            canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+            const context = canvas.getContext("2d");
+            if (!context) {
+              showToast("Browser tidak dapat memproses foto ini.");
+              photoInput.value = "";
+              return;
+            }
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            const photo = canvas.toDataURL("image/jpeg", 0.82);
+            const previousPhoto = saved["profile-photo"];
+            saved["profile-photo"] = photo;
+            if (!saveData()) {
+              if (previousPhoto) saved["profile-photo"] = previousPhoto;
+              else delete saved["profile-photo"];
+              photoInput.value = "";
+              return;
+            }
+            showProfilePhoto(photo);
+            photoInput.value = "";
+            showToast("Foto profil berhasil disimpan di sampul dan data diri ♡");
+          });
+          image.addEventListener("error", () => {
+            URL.revokeObjectURL(objectUrl);
+            photoInput.value = "";
+            showToast("Foto tidak dapat dibuka. Coba file JPG atau PNG lain.");
+          });
+          image.src = objectUrl;
+        });
+
+        function readLearningItems() {
+          if (!Array.isArray(saved["learning-items"])) return defaultLearningItems.map((item) => ({ ...item }));
+          return saved["learning-items"]
+            .filter((item) => item && typeof item === "object")
+            .map((item, index) => ({
+              id: typeof item.id === "string" ? item.id : `saved-${index}`,
+              date: typeof item.date === "string" ? item.date : "",
+              title: typeof item.title === "string" ? item.title : "Bukti belajar",
+              description: typeof item.description === "string" ? item.description : "",
+              url: typeof item.url === "string" && safeUrl(item.url) ? safeUrl(item.url) : "",
+            }));
+        }
+
+        function persistLearningItems() {
+          saved["learning-items"] = learningItems;
+          saveData();
+        }
+
+        function renderLearningItems() {
+          const editing = editButton.getAttribute("aria-pressed") === "true";
+          learningList.replaceChildren();
+          learningItems.forEach((item, index) => {
+            const card = document.createElement("article");
+            card.className = "learning-item";
+
+            const icon = document.createElement("span");
+            icon.className = "learning-icon";
+            icon.setAttribute("aria-hidden", "true");
+            icon.textContent = index % 2 === 0 ? "▤" : "✎";
+
+            const details = document.createElement("div");
+            const date = document.createElement("small");
+            date.dataset.editable = `learning-${item.id}-date`;
+            date.dataset.learningId = item.id;
+            date.dataset.learningField = "date";
+            date.textContent = item.date || "TAMBAHKAN TANGGAL / JENIS";
+            date.contentEditable = String(editing);
+            date.spellcheck = editing;
+
+            const title = document.createElement("h3");
+            title.dataset.editable = `learning-${item.id}-title`;
+            title.dataset.learningId = item.id;
+            title.dataset.learningField = "title";
+            title.textContent = item.title;
+            title.contentEditable = String(editing);
+            title.spellcheck = editing;
+
+            const description = document.createElement("p");
+            description.dataset.editable = `learning-${item.id}-description`;
+            description.dataset.learningId = item.id;
+            description.dataset.learningField = "description";
+            description.textContent = item.description;
+            description.contentEditable = String(editing);
+            description.spellcheck = editing;
+
+            details.append(date, title, description);
+            if (item.url) {
+              const link = document.createElement("a");
+              link.href = item.url;
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+              link.textContent = "BUKA SERTIFIKAT / BUKTI ↗";
+              details.append(link);
+            }
+
+            const urlLabel = document.createElement("label");
+            urlLabel.className = "link-editor";
+            urlLabel.hidden = !editing;
+            urlLabel.textContent = "LINK BUKTI";
+            const urlInput = document.createElement("input");
+            urlInput.type = "url";
+            urlInput.placeholder = "https://contoh.com";
+            urlInput.setAttribute("aria-label", `Tautan bukti belajar: ${item.title}`);
+            urlInput.value = item.url;
+            urlInput.addEventListener("change", () => {
+              if (!urlInput.value.trim()) {
+                item.url = "";
+                persistLearningItems();
+                renderLearningItems();
+                showToast("Tautan bukti dihapus.");
+                return;
+              }
+              const url = safeUrl(urlInput.value);
+              if (!url) {
+                showToast("Masukkan tautan lengkap yang diawali https://");
+                urlInput.value = item.url;
+                return;
+              }
+              item.url = url;
+              persistLearningItems();
+              renderLearningItems();
+              showToast("Tautan bukti berhasil disimpan ♡");
+            });
+            urlLabel.append(urlInput);
+
+            const removeButton = document.createElement("button");
+            removeButton.className = "remove-learning";
+            removeButton.type = "button";
+            removeButton.textContent = "HAPUS";
+            removeButton.setAttribute("aria-label", `Hapus bukti belajar: ${item.title}`);
+            removeButton.hidden = !editing;
+            removeButton.addEventListener("click", () => {
+              learningItems = learningItems.filter((learningItem) => learningItem.id !== item.id);
+              persistLearningItems();
+              renderLearningItems();
+              showToast("Bukti belajar dihapus.");
+            });
+
+            card.append(icon, details, removeButton);
+            details.append(urlLabel);
+            learningList.append(card);
+          });
+        }
+
+        document.querySelectorAll("[data-editable]").forEach((element) => {
+          const key = element.dataset.editable;
+          if (typeof saved[key] === "string") element.textContent = saved[key];
+        });
+        if (typeof saved.email === "string") {
+          document.querySelector('[data-contact="email"]').href = `mailto:${saved.email}`;
+        }
+        if (typeof saved.instagram === "string") {
+          const username = saved.instagram.replace(/^@/, "");
+          document.querySelector('[data-contact="instagram"]').href =
+            safeUrl(saved.instagram) || `https://instagram.com/${encodeURIComponent(username)}`;
+        }
+
+        document.addEventListener("input", (event) => {
+          const element = event.target.closest("[data-editable]");
+          if (!element) return;
+          const key = element.dataset.editable;
+          const value = element.textContent.trim();
+          saved[key] = value;
+          document.querySelectorAll(`[data-editable="${key}"]`).forEach((other) => {
+            if (other !== element) other.textContent = value;
+          });
+          if (element.dataset.learningId) {
+            const item = learningItems.find((learningItem) => learningItem.id === element.dataset.learningId);
+            if (item) item[element.dataset.learningField] = value;
+            saved["learning-items"] = learningItems;
+          }
+          if (key === "email") {
+            document.querySelector('[data-contact="email"]').href = `mailto:${value}`;
+          }
+          if (key === "instagram") {
+            const instagramLink = document.querySelector('[data-contact="instagram"]');
+            const username = value.replace(/^@/, "");
+            instagramLink.href = safeUrl(value) || `https://instagram.com/${encodeURIComponent(username)}`;
+          }
+          saveData();
+        });
+
+        renderLearningItems();
+
+        document.querySelectorAll("[data-project-link]").forEach((link) => {
+          const key = link.dataset.projectLink;
+          const input = document.querySelector(`[data-link-input="${key}"]`);
+          const savedUrl = typeof saved[`link-${key}`] === "string" ? safeUrl(saved[`link-${key}`]) : null;
+          if (savedUrl) link.href = savedUrl;
+          input.value = savedUrl || "";
+          input.addEventListener("change", () => {
+            const validUrl = safeUrl(input.value);
+            if (!validUrl) {
+              showToast("Masukkan tautan lengkap yang diawali https://");
+              input.value = link.href === "#" ? "" : link.href;
+              return;
+            }
+            link.href = validUrl;
+            saved[`link-${key}`] = validUrl;
+            saveData();
+            showToast("Tautan berhasil disimpan ♡");
+          });
+        });
+
+        document.querySelector("#editButton").addEventListener("click", () => {
+          const enabled = editButton.getAttribute("aria-pressed") !== "true";
+          editButton.setAttribute("aria-pressed", String(enabled));
+          editButton.textContent = enabled ? "✓ SELESAI EDIT" : "✎ EDIT ISI";
+          document.body.classList.toggle("editor-on", enabled);
+          document.querySelectorAll("[data-editable]").forEach((element) => {
+            element.contentEditable = String(enabled);
+            element.spellcheck = enabled;
+          });
+          photoInput.disabled = !enabled;
+          document.querySelectorAll(".link-editor").forEach((label) => {
+            label.hidden = !enabled;
+          });
+          addLearningButton.hidden = !enabled;
+          renderLearningItems();
+          showToast(enabled ? "Mode edit aktif — klik teks untuk mengubahnya." : "Perubahan tersimpan di browser ♡");
+        });
+
+        addLearningButton.addEventListener("click", () => {
+          learningForm.hidden = false;
+          learningForm.elements.title.focus();
+        });
+
+        document.querySelector("#cancelLearningButton").addEventListener("click", () => {
+          learningForm.reset();
+          learningForm.hidden = true;
+        });
+
+        learningForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const formData = new FormData(learningForm);
+          const title = String(formData.get("title") || "").trim();
+          const description = String(formData.get("description") || "").trim();
+          const rawUrl = String(formData.get("url") || "").trim();
+          const url = rawUrl ? safeUrl(rawUrl) : "";
+          if (!title || !description) {
+            showToast("Isi judul dan deskripsi bukti belajar dulu ya.");
+            return;
+          }
+          if (rawUrl && !url) {
+            showToast("Masukkan tautan lengkap yang diawali https://");
+            return;
+          }
+          const id = typeof crypto.randomUUID === "function"
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+          learningItems.push({
+            id,
+            date: String(formData.get("date") || "").trim(),
+            title,
+            description,
+            url,
+          });
+          persistLearningItems();
+          renderLearningItems();
+          learningForm.reset();
+          learningForm.hidden = true;
+          showToast("Bukti belajar baru berhasil ditambahkan ♡");
+        });
+
+        function showPage(index) {
+          const nextPage = Math.max(0, Math.min(index, pageIds.length - 1));
+          const direction = nextPage >= currentPage ? "forward" : "backward";
+          currentPage = nextPage;
+          pageContents.forEach((article) => {
+            const active = article.dataset.content === pageIds[currentPage];
+            article.hidden = !active;
+            if (active) {
+              article.style.animationName = "none";
+              void article.offsetWidth;
+              article.style.animationName = "";
+              article.dataset.direction = direction;
+            }
+          });
+          pageLinks.forEach((link) => {
+            const active = link.dataset.page === pageIds[currentPage];
+            link.classList.toggle("active", active);
+            if (active) link.setAttribute("aria-current", "page");
+            else link.removeAttribute("aria-current");
+          });
+          document.querySelector("#pageNumber").textContent =
+            `${String(currentPage + 1).padStart(2, "0")} / ${String(pageIds.length).padStart(2, "0")}`;
+          document.querySelector("#previousPage").disabled = currentPage === 0;
+          document.querySelector("#nextPage").disabled = currentPage === pageIds.length - 1;
+        }
+
+        pageLinks.forEach((link) => {
+          link.addEventListener("click", () => showPage(pageIds.indexOf(link.dataset.page)));
+        });
+        document.querySelector("#previousPage").addEventListener("click", () => showPage(currentPage - 1));
+        document.querySelector("#nextPage").addEventListener("click", () => showPage(currentPage + 1));
+        document.querySelector("#openBook").addEventListener("click", () => {
+          cover.hidden = true;
+          portfolio.hidden = false;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        document.querySelector("#homeButton").addEventListener("click", (event) => {
+          event.preventDefault();
+          portfolio.hidden = true;
+          cover.hidden = false;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        const spotifyPlayer = document.querySelector("#spotifyPlayer");
+        document.querySelectorAll("[data-spotify-track]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const trackId = button.dataset.spotifyTrack;
+            const trackName = button.querySelector("span:last-child").textContent.trim();
+            spotifyPlayer.src = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator`;
+            spotifyPlayer.title = `Pemutar Spotify: ${trackName}`;
+            document.querySelectorAll("[data-spotify-track]").forEach((trackButton) => {
+              const selected = trackButton === button;
+              trackButton.setAttribute("aria-pressed", String(selected));
+            });
+          });
+        });
+
+        document.querySelector("#mascotButton").addEventListener("click", () => {
+          const messages = [
+            "Hai! Senang kamu mampir ✿",
+            "Pelan-pelan, kamu tetap bertumbuh ♡",
+            "Karya kecil juga layak dirayakan!",
+            "Jangan lupa istirahat sebentar ✧",
+            "Semoga harimu menyenangkan!",
+          ];
+          document.querySelector("#speech").textContent = messages[Math.floor(Math.random() * messages.length)];
+          document.querySelector("#mascot").classList.add("show");
+          window.clearTimeout(speechTimer);
+          speechTimer = window.setTimeout(() => document.querySelector("#mascot").classList.remove("show"), 2800);
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (portfolio.hidden || document.body.classList.contains("editor-on")) return;
+          if (event.altKey || event.ctrlKey || event.metaKey || event.target.matches("input, textarea, [contenteditable='true']")) return;
+          if (event.key === "ArrowLeft") showPage(currentPage - 1);
+          if (event.key === "ArrowRight") showPage(currentPage + 1);
+        });
+
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          book.addEventListener("pointermove", (event) => {
+            const bounds = book.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+            book.style.setProperty("--tilt-x", `${-y * 1.5}deg`);
+            book.style.setProperty("--tilt-y", `${x * 1.5}deg`);
+            book.classList.add("is-tilting");
+          });
+          book.addEventListener("pointerleave", () => book.classList.remove("is-tilting"));
+        }
+
+        showPage(0);
+      })();
+    </script>
+  </body>
+</html>
